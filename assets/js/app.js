@@ -1,5 +1,6 @@
 $(document).ready(() => {
-  $('h1').hide();
+    $('#valid').hide();
+    $('#invalid').hide();
   /* se le da el formato mm/aaaa a la fecha al momento de escribirla */
   $('#exp').mask('00/0000');
 
@@ -11,8 +12,8 @@ $(document).ready(() => {
     let name = $('#name').val();
 
     if (CARD.validTypeCard(num) === 'mastercard' && CARD.LengthCvv(cvv) === 'visa/mastercard' && CARD.validateDate(date) === true && CARD.validateName(name) === true || CARD.validTypeCard(num) === 'visa' && CARD.LengthCvv(cvv) === 'visa/mastercard' && CARD.validateDate(date) === true && CARD.validateName(name) === true || CARD.validTypeCard(num) === 'amex' && CARD.LengthCvv(cvv) === 'visa/mastercard' && CARD.validateDate(date) === true && CARD.validateName(name) === true){
-      $('#val').show();
-      $('#inval').hide();
+      $('#valid').show();
+      $('#invalid').hide();
     } else {
       $('#val').hide();
       $('#inval').show();
