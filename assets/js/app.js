@@ -1,6 +1,5 @@
 $(document).ready(() => {
     $('#valid').hide();
-    $('#invalid').hide();
   /* se le da el formato mm/aaaa a la fecha al momento de escribirla */
   $('#exp').mask('00/0000');
 
@@ -13,15 +12,12 @@ $(document).ready(() => {
 
     if (CARD.validTypeCard(num) === 'mastercard' && CARD.LengthCvv(cvv) === 'visa/mastercard' && CARD.validateDate(date) === true && CARD.validateName(name) === true || CARD.validTypeCard(num) === 'visa' && CARD.LengthCvv(cvv) === 'visa/mastercard' && CARD.validateDate(date) === true && CARD.validateName(name) === true || CARD.validTypeCard(num) === 'amex' && CARD.LengthCvv(cvv) === 'visa/mastercard' && CARD.validateDate(date) === true && CARD.validateName(name) === true){
       $('#valid').show();
-      $('#invalid').hide();
-    } else {
-      $('#val').hide();
-      $('#inval').show();
     }
 
     /* Validación de campos */
     if(CARD.validateData(num) === false || CARD.validateCvv(cvv) === false || CARD.validTypeDataDate(date) === false || CARD.validateName(name) === false){
       Materialize.toast('Ningún campo deber estar vacío o contener datos erróneos', 3000);
+      $('#valid').hide();
     }
 
     /* Validación de la fecha de expiración */
