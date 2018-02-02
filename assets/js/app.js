@@ -38,8 +38,25 @@ $(document).ready(() => {
     }
   });
 
-  $('cvv').keyup(function(){
-    
+  $('#cvv').keyup(function(){
+    if (CARD.validTypeCard($('#cn').val()) === 'mastercard' && CARD.LengthCvv($('#cvv').val()) === 'visa/mastercard'){
+      $('#cvv').attr('class', 'valid');
+      $('#statusCVV').attr('data-success', 'CVV Válido');
+    } if (CARD.validTypeCard($('#cn').val()) === 'visa' && CARD.LengthCvv($('#cvv').val()) === 'visa/mastercard'){
+      $('#cvv').attr('class', 'valid');
+      $('#statusCVV').attr('data-success', 'CVV Válido');
+    } if (CARD.validTypeCard($('#cn').val()) === 'amex' && CARD.LengthCvv($('#cvv').val()) === 'amex'){
+      $('#cvv').attr('class', 'valid');
+      $('#statusCVV').attr('data-success', 'CVV Válido');
+    } if ($('#cvv').val()==='') {
+      $('#cvv').removeAttr('class', 'valid');
+      $('#cvv').removeAttr('class', 'invalid');
+      $('#statusCVV').removeAttr('data-success', 'CVV Válido');
+      $('#statusCVV').removeAttr('data-error', 'CVV NO Válido');
+    } if(CARD.LengthCvv($('#cvv').val()) === 'cvv inválido') {
+      $('#cvv').attr('class', 'invalid');
+      $('#statusCVV').attr('data-error', 'CVV NO Válido');
+    }
   })
  });
 
