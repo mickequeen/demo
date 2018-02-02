@@ -16,18 +16,26 @@
         <img class="peque" id="amex" src="assets/img/amex-01.png" alt="">
       </div>
       <div class="row">
-        <input type="text" id="cn" placeholder="NÚMERO DE TARJETA">
-      </div>
-      <div class="row">
-        <div class="col s6">
-          <input type="text" id="cvv" placeholder="CVV">
-        </div>
-        <div class="col s6">
-          <input type="text" id="exp" placeholder="FECHA (MM/AAAA)" maxlength="7">
+        <div class="input-field col s12">
+          <input id="cn" type="text" class="validate">
+          <label id="statusCard" for="cn">Número tarjeta de crédito</label>
         </div>
       </div>
       <div class="row">
-        <input type="text" id="name" placeholder="NOMBRE DEL TITULAR">
+        <div class="input-field col s6">
+          <input id="cvv" type="text" class="validate">
+          <label id="status" for="creditCard">CVV</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="exp" type="text" class="validate" maxlength="7">
+          <label id="status" for="creditCard">Exp (mm/aaaa)</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="name" type="text" class="validate">
+          <label id="status" for="creditCard">Titular</label>
+        </div>
       </div>
       <input class="waves-effect waves-light btn" type="button" id="validar" name="" value="validar">
     </form>

@@ -3,6 +3,21 @@ $(document).ready(() => {
   /* se le da el formato mm/aaaa a la fecha al momento de escribirla */
   $('#exp').mask('00/0000');
 
+    var num = $('#cn').val();
+    var cvv = $('#cvv').val();
+    var date = $('#exp').val();
+    var name = $('#name').val();
+
+  $('#cn').keyup(function(){
+    if(CARD.validLuhn($('#cn').val())){
+      $('#cn').attr('class', 'valid');
+      $('#statusCard').attr('data-success', 'Número de tarjeta Válido');
+    }
+  });
+
+    });
+
+/*
   $('#validar').click(() => {
 
     let num = $('#cn').val();
@@ -14,23 +29,24 @@ $(document).ready(() => {
       $('#valid').show();
     }
 
-    /* Validación de campos */
+    /* Validación de campos
     if(CARD.validateData(num) === false || CARD.validateCvv(cvv) === false || CARD.validTypeDataDate(date) === false || CARD.validateName(name) === false){
       Materialize.toast('Ningún campo deber estar vacío o contener datos erróneos', 3000);
       $('#valid').hide();
     }
 
-    /* Validación de la fecha de expiración */
+    /* Validación de la fecha de expiración 
     if (CARD.validateDate(date) === false) {
       Materialize.toast('Fecha inválida', 3000);
     }
 
-    /* Validación del número de la tarjeta */
+     Validación del número de la tarjeta 
     if (CARD.validLuhn(num) === false) {
       Materialize.toast('Tarjeta inválida', 3000);
     }      
 
    /* Validaciones según el tipo de tarjeta */
+   /*
     if (CARD.validTypeCard(num) === 'visa') {
       if(CARD.validateLength(num) === 'visa'){
         $('#visa').show();
@@ -64,4 +80,6 @@ $(document).ready(() => {
       }
     }
   });
+
 });
+*/
