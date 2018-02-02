@@ -3,19 +3,45 @@ $(document).ready(() => {
   /* se le da el formato mm/aaaa a la fecha al momento de escribirla */
   $('#exp').mask('00/0000');
 
-    var num = $('#cn').val();
-    var cvv = $('#cvv').val();
-    var date = $('#exp').val();
-    var name = $('#name').val();
-
+/*
+*validación tarjeta utilizando api
+*/
   $('#cn').keyup(function(){
-    if(CARD.validLuhn($('#cn').val())){
+    if (CARD.validLuhn($('#cn').val()) === true && CARD.validTypeCard($('#cn').val()) === 'mastercard' && CARD.validateLength($('#cn').val()) === 'mastercard'){
+      $('#mastercard').show();
+      $('#visa').hide();
+      $('#amex').hide();
       $('#cn').attr('class', 'valid');
       $('#statusCard').attr('data-success', 'Número de tarjeta Válido');
+    } if (CARD.validLuhn($('#cn').val()) === true && CARD.validTypeCard($('#cn').val()) === 'visa'){
+      $('#mastercard').hide();
+      $('#visa').show();
+      $('#amex').hide();
+      $('#cn').attr('class', 'valid');
+      $('#statusCard').attr('data-success', 'Número de tarjeta Válido');
+    } if(CARD.validLuhn($('#cn').val()) === true && CARD.validTypeCard($('#cn').val()) === 'amex' && CARD.validateLength($('#cn').val()) === 'amex'){
+      $('#mastercard').hide();
+      $('#visa').hide();
+      $('#amex').show();
+      $('#cn').attr('class', 'valid');
+      $('#statusCard').attr('data-success', 'Número de tarjeta Válido');
+    } if (CARD.validLuhn($('#cn').val()) !== true){
+      $('#cn').attr('class', 'invalid');
+      $('#statusCard').attr('data-error', 'tarjeta NO válida');
+    } if ($('#cn').val() == "") {
+      $('#cn').removeAttr('class', 'valid');
+      $('#statusCard').removeAttr('data-success', 'Número de tarjeta Válido');
+      $('#mastercard').show();
+      $('#visa').show();
+      $('#amex').show();
+
     }
   });
 
-    });
+  $('cvv').keyup(function(){
+    
+  })
+ });
 
 /*
   $('#validar').click(() => {
