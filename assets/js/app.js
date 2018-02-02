@@ -37,7 +37,9 @@ $(document).ready(() => {
 
     }
   });
-
+/*
+*validacion cvv usando api
+*/
   $('#cvv').keyup(function(){
     if (CARD.validTypeCard($('#cn').val()) === 'mastercard' && CARD.LengthCvv($('#cvv').val()) === 'visa/mastercard'){
       $('#cvv').attr('class', 'valid');
@@ -57,72 +59,37 @@ $(document).ready(() => {
       $('#cvv').attr('class', 'invalid');
       $('#statusCVV').attr('data-error', 'CVV NO Válido');
     }
-  })
- });
-
+  });
 /*
-  $('#validar').click(() => {
+*validacion fecha expiracion api
+*/
 
-    let num = $('#cn').val();
-    let cvv = $('#cvv').val();
-    let date = $('#exp').val();
-    let name = $('#name').val();
-
-    if (CARD.validTypeCard(num) === 'mastercard' && CARD.LengthCvv(cvv) === 'visa/mastercard' && CARD.validateDate(date) === true && CARD.validateName(name) === true || CARD.validTypeCard(num) === 'visa' && CARD.LengthCvv(cvv) === 'visa/mastercard' && CARD.validateDate(date) === true && CARD.validateName(name) === true || CARD.validTypeCard(num) === 'amex' && CARD.LengthCvv(cvv) === 'visa/mastercard' && CARD.validateDate(date) === true && CARD.validateName(name) === true){
-      $('#valid').show();
-    }
-
-    /* Validación de campos
-    if(CARD.validateData(num) === false || CARD.validateCvv(cvv) === false || CARD.validTypeDataDate(date) === false || CARD.validateName(name) === false){
-      Materialize.toast('Ningún campo deber estar vacío o contener datos erróneos', 3000);
-      $('#valid').hide();
-    }
-
-    /* Validación de la fecha de expiración 
-    if (CARD.validateDate(date) === false) {
-      Materialize.toast('Fecha inválida', 3000);
-    }
-
-     Validación del número de la tarjeta 
-    if (CARD.validLuhn(num) === false) {
-      Materialize.toast('Tarjeta inválida', 3000);
-    }      
-
-   /* Validaciones según el tipo de tarjeta */
-   /*
-    if (CARD.validTypeCard(num) === 'visa') {
-      if(CARD.validateLength(num) === 'visa'){
-        $('#visa').show();
-        $('#mastercard').hide();
-        $('#amex').hide();
-        if (CARD.LengthCvv(cvv) !== 'visa/mastercard') {
-          Materialize.toast('El CVV no corresponde a la tarjeta ingresada', 4000);
-        }
-      }
-    }
-
-    if (CARD.validTypeCard(num) === 'mastercard') {
-      if (CARD.validateLength(num) === 'mastercard') {
-        $('#visa').hide();
-        $('#mastercard').show();
-        $('#amex').hide();
-        if (CARD.LengthCvv(cvv) !== 'visa/mastercard') {
-          Materialize.toast('El CVV no corresponde a la tarjeta ingresada', 4000);
-        }
-      }
-    }
-
-    if (CARD.validTypeCard(num) === 'amex') {
-      if (CARD.validateLength(num) === 'amex') {
-        $('#visa').hide();
-        $('#mastercard').hide();
-        $('#amex').show();
-        if (CARD.LengthCvv(cvv) !== 'amex') {
-          Materialize.toast('El CVV no corresponde a la tarjeta ingresada', 4000);
-        }
-      }
+  $('#exp').keyup(function(){
+    if (CARD.validateDate($('#exp').val()) === true && CARD.validTypeDataDate($('#exp').val()) === true) {
+      $('#exp').attr('class', 'valid');
+      $('#statusEXP').attr('data-success', 'Fecha Válida');
+    } if (CARD.validTypeDataDate($('#exp').val()) === false || CARD.validateDate($('#exp').val()) !== true) {
+      $('#exp').removeAttr('class', 'valid');
+      $('#statusEXP').removeAttr('data-success', 'Fecha Válida');
+      $('#exp').attr('class', 'invalid');
+      $('#statusEXP').attr('data-error', 'Fecha NO Válida');
+    } if ($('#exp').val() === '') {
+      $('#exp').removeAttr('class', 'valid');
+      $('#statusEXP').removeAttr('data-success', 'Fecha Válida');
     }
   });
 
+  $('#name').keyup(function(){
+    if (CARD.validateName($('#name').val()) === false) {
+      $('#name').attr('class', 'invalid');
+      $('#statusName').attr('data-error', 'Carácteres no válidos');
+    } if ($('#name').val() === true) {
+      $('#name').removeAttr('class', 'invalid');
+      $('#statusName').removeAttr('data-error', 'Carácteres no válidos');
+    }
+    if ($('#name').val() === "") {
+            $('#name').removeAttr('class', 'invalid');
+      $('#statusName').removeAttr('data-error', 'Carácteres no válidos');
+    }
+  });
 });
-*/
