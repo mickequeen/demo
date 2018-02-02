@@ -1,5 +1,4 @@
 $(document).ready(() => {
-    $('#valid').hide();
   /* se le da el formato mm/aaaa a la fecha al momento de escribirla */
   $('#exp').mask('00/0000');
 
@@ -88,7 +87,7 @@ $(document).ready(() => {
       $('#statusName').removeAttr('data-error', 'Carácteres no válidos');
     }
     if ($('#name').val() === "") {
-            $('#name').removeAttr('class', 'invalid');
+      $('#name').removeAttr('class', 'invalid');
       $('#statusName').removeAttr('data-error', 'Carácteres no válidos');
     }
   });
